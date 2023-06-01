@@ -1,41 +1,16 @@
 import './App.css';
+import data from './v1.sidenavdata.json';
+import SideNavMenu from "./SideNavMenu/SideNavMenu";
+import {buildNestedStructure} from "./build-nested-list/build-nested-elements.util";
 
 function App() {
-    const buildNestedStructure = () => {
-        const topLevelItems = [];
-        const itemMap = {};
+    const { items, activeItem } = buildNestedStructure(data);
 
-        for (const item of data) {
-            const {title, path, metaData} = item;
-            const newItem = {title: title.replace(/-/g, " "), path, metaData , subNav: []};
-
-            if (metaData.level === "1") {
-                topLevelItems.push(newItem);
-            } else {
-                const parentLevel = metaData.level - 1;
-                const parentItem = itemMap[parentLevel];
-
-                if (parentItem !== undefined) {
-                    if (parentItem.subNav === undefined) {
-                        parentItem.subNav = [];
-                    }
-                }
-
-                parentItem.subNav.push(newItem);
-            }
-
-            itemMap[metaData.level] = newItem;
-        }
-
-        return topLevelItems;
-    }
-
-    const output = buildNestedStructure();
-
-    console.log('output', output)
+    console.log('items', items)
+    console.log('activeItem', activeItem)
 
     return (
-        <></>
+        <SideNavMenu items={items} activeItem={activeItem} />
     );
 }
 
