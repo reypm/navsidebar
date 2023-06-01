@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {NavItemProps} from "./SideNavMenu.model";
 import NavItem from "./NavItem/NavItem";
+import React = require('react');
 
 const SideNavMenu = ({
   items,
