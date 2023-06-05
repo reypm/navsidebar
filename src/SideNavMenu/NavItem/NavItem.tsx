@@ -7,14 +7,20 @@ const NavItem = ({
   item,
   activeSubNav,
   setActiveSubNav,
-  isItemSelected,
-  isActiveTab
+  isActiveTab,
+  wrapperClassName,
+  selectedItemClassName,
+  spanClassName,
+  linkClassName
 }: {
   item: NavItemProps<string>,
-  activeSubNav: any,
-  setActiveSubNav: any,
-  isItemSelected: boolean,
-  isActiveTab: boolean
+  activeSubNav?: any,
+  setActiveSubNav?: any,
+  isActiveTab?: boolean,
+  wrapperClassName?: string,
+  selectedItemClassName?: string,
+  spanClassName?: string,
+  linkClassName?: string,
 }) => {
   const handleSubNavExpand = (item: NavItemProps<string>) => {
     if (activeSubNav.expanded) {
@@ -29,10 +35,8 @@ const NavItem = ({
         false
 
       setActiveSubNav({
-        expanded:
-          item.subNav && item.subNav.length > 0
-            ? !currentItemOrSubNavItemIsOpen
-            : false, // disable expansion value, if not expandable
+        // disable expansion value, if not expandable
+        expanded: item.subNav && item.subNav.length > 0 ? !currentItemOrSubNavItemIsOpen : false,
         selectedId: item.path
       })
     } else {
@@ -44,19 +48,14 @@ const NavItem = ({
   }
 
   return (
-    <li className="side-navigation-panel-select-wrap">
+    <li className={wrapperClassName} key={item.path}>
       <div
-        onClick={(): void => {
-          handleSubNavExpand(item);
-        }}
-        className={`side-navigation-panel-select-option ${
-          isItemSelected
-            ? 'side-navigation-panel-select-option-selected'
-            : ''
-        }`}
+        onClick={(): void => { handleSubNavExpand(item) }}
+        className={selectedItemClassName}
       >
-      <span className="side-navigation-panel-select-option-wrap">
-        <a href={item.path} className="side-navigation-panel-select-option-text">
+
+      <span className={spanClassName}>
+        <a href={item.path} className={linkClassName}>
           {item.title}
         </a>
       </span>
