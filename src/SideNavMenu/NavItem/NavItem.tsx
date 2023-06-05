@@ -1,6 +1,7 @@
-import React = require('react');
+import React from 'react';
 import {NavItemProps} from "../SideNavMenu.model";
-import {ChevronDownIcon, ChevronUpIcon} from "../Icon";
+import ChevronUpIcon from "../Icon/ChevronUpIcon";
+import ChevronDownIcon from "../Icon/ChevronDownIcon";
 
 const NavItem = ({
   item,
