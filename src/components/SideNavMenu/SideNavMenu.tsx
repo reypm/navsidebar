@@ -3,20 +3,17 @@ import { NavItemProps } from './SideNavMenu.model';
 import './style.scss';
 import NavItem from './NavItem/NavItem';
 
-const SideNavMenu = ({
-	items,
-	activePath = '',
-}: {
-	items: NavItemProps<string>[];
-	activePath?: string;
-}) => {
+const SideNavMenu = ({ items }: { items: NavItemProps<string>[]; activePath?: string }) => {
 	const [activeItem, setActiveItem] = useState('');
+	let selectedClass: string;
 
 	const handleClick = (item: NavItemProps<string>) => {
 		if (activeItem === item.id) {
 			setActiveItem('');
+			selectedClass = '';
 		} else {
 			setActiveItem(item.id);
+			selectedClass = 'selected';
 		}
 	};
 
@@ -39,6 +36,7 @@ const SideNavMenu = ({
 									liCssClass="outter-li-0"
 									divCssClass="outter-div outter-div-0"
 									spanCssClass="outter-text-0"
+									selectedClass={selectedClass}
 								/>
 							);
 						})}

@@ -10,6 +10,7 @@ const NavItem = ({
 	liCssClass,
 	divCssClass,
 	spanCssClass,
+	selectedClass,
 }: {
 	item: NavItemProps<string>;
 	onItemClick: any;
@@ -17,15 +18,17 @@ const NavItem = ({
 	liCssClass?: string;
 	divCssClass?: string;
 	spanCssClass?: string;
+	selectedClass?: string;
 }) => {
 	const hasSubNav = item.subNav && item.subNav.length > 0;
 	const subNav = item.subNav;
 
-	console.log(isShown.includes(item.id));
-
 	return (
 		<li className={liCssClass}>
-			<div onClick={() => onItemClick(item)} className={divCssClass}>
+			<div
+				onClick={() => onItemClick(item)}
+				className={[divCssClass, selectedClass].join(' ')}
+			>
 				<span className={spanCssClass}>{item.title}</span>
 				{hasSubNav && !isShown.includes(item.id) ? <ChevronDownIcon /> : <ChevronUpIcon />}
 			</div>
