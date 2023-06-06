@@ -36,6 +36,9 @@ const SideNavMenu = ({
 									item={item}
 									onItemClick={handleClick}
 									isShown={activeItem}
+									liCssClass="outter-li-0"
+									divCssClass="outter-div outter-div-0"
+									spanCssClass="outter-text-0"
 								/>
 							);
 						})}

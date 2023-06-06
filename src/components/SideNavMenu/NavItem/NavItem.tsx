@@ -7,28 +7,27 @@ const NavItem = ({
 	item,
 	onItemClick,
 	isShown,
+	liCssClass,
+	divCssClass,
+	spanCssClass,
 }: {
 	item: NavItemProps<string>;
 	onItemClick: any;
 	isShown: string;
+	liCssClass?: string;
+	divCssClass?: string;
+	spanCssClass?: string;
 }) => {
 	const hasSubNav = item.subNav && item.subNav.length > 0;
 	const subNav = item.subNav;
 
+	console.log(isShown.includes(item.id));
+
 	return (
-		<li
-			className={`side-navigation-panel-select-wrap ${
-				hasSubNav ? 'side-navigation-panel-select-inner-wrap' : ''
-			}`}
-		>
-			<div
-				onClick={() => onItemClick(item)}
-				className={`side-navigation-panel-select-option ${
-					isShown.includes(item.id) ? 'side-navigation-panel-select-option-selected' : ''
-				}`}
-			>
-				<span className="side-navigation-panel-select-option-wrap">{item.title}</span>
-				{hasSubNav ? <ChevronDownIcon /> : ''}
+		<li className={liCssClass}>
+			<div onClick={() => onItemClick(item)} className={divCssClass}>
+				<span className={spanCssClass}>{item.title}</span>
+				{hasSubNav && !isShown.includes(item.id) ? <ChevronDownIcon /> : <ChevronUpIcon />}
 			</div>
 			{hasSubNav && isShown.includes(item.id) && (
 				<ul className="side-navigation-panel-select-inner">
@@ -39,6 +38,9 @@ const NavItem = ({
 								item={item}
 								onItemClick={onItemClick}
 								isShown={isShown}
+								liCssClass="outter-li-1"
+								divCssClass="outter-div outter-div-1"
+								spanCssClass="outter-text-1"
 							/>
 						);
 					})}
