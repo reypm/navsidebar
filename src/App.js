@@ -5,9 +5,11 @@ import SideNavMenu from './components/SideNavMenu/SideNavMenu';
 import React from 'react';
 
 function App() {
+	const { items } = buildNestedStructure(data);
+
 	return (
 		<nav role="navigation" aria-label="side-navigation" className="side-navigation-panel">
-			<SideNavMenu items={buildNestedStructure(data)} />
+			<SideNavMenu items={items} />
 		</nav>
 	);
 }

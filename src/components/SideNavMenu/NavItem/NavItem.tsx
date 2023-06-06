@@ -5,11 +5,11 @@ import ChevronDownIcon from '../Icon/ChevronDownIcon';
 const NavItem = ({
 	item,
 	onItemClick,
-	isShown = false,
+	isShown,
 }: {
 	item: NavItemProps<string>;
 	onItemClick: any;
-	isShown?: boolean | undefined;
+	isShown: string;
 }) => {
 	const hasSubNav = item.subNav && item.subNav.length > 0;
 	const subNav = item.subNav;
@@ -20,10 +20,17 @@ const NavItem = ({
 				<span className="side-navigation-panel-select-option-wrap">{item.title}</span>
 				{hasSubNav ? <ChevronDownIcon /> : ''}
 			</div>
-			{hasSubNav && isShown && (
+			{hasSubNav && isShown.includes(item.id) && (
 				<ul className="side-navigation-panel-select">
 					{subNav?.map((item: NavItemProps<string>) => {
-						return <NavItem key={item.path} item={item} onItemClick={onItemClick} />;
+						return (
+							<NavItem
+								key={item.path}
+								item={item}
+								onItemClick={onItemClick}
+								isShown={isShown}
+							/>
+						);
 					})}
 				</ul>
 			)}

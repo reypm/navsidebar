@@ -1,11 +1,13 @@
 export interface NavItemProps<T> {
-  title: string;
-  path: string;
-  metaData?: NavMetadata
-  subNav?: NavItemProps<T>[];
+	id: string;
+	title: string;
+	path: string;
+	metaData?: NavMetadata;
+	subNav?: NavItemProps<T>[];
 }
+
 export interface NavMetadata {
-  level: string,
-  fileType: string,
-  displayOnOverview: string
+	level: string;
+	fileType: string;
+	displayOnOverview: string;
 }

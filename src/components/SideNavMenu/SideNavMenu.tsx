@@ -10,40 +10,13 @@ const SideNavMenu = ({
 	items: NavItemProps<string>[];
 	activePath?: string;
 }) => {
-	const [activeItem, setActiveItem] = useState({
-		expanded: false,
-		path: activePath,
-	});
-
-	// Listen for parent prop changes and update state
-	React.useEffect(() => {
-		setActiveItem((originalSubNav) => ({
-			expanded: originalSubNav.expanded,
-			path: activePath,
-		}));
-	}, [activePath]);
+	const [activeItem, setActiveItem] = useState('');
 
 	const handleClick = (item: NavItemProps<string>) => {
-		console.log('click', activeItem.expanded, activeItem.path);
-		const hasSubNav = item.subNav && item.subNav.length > 0;
-		const subNav = item.subNav;
-
-		if (activeItem.expanded) {
-			const currentItemIsOpen: boolean =
-				item.path === activeItem.path ||
-				(hasSubNav &&
-					subNav?.some((_subNavItem) => _subNavItem.path === activeItem.path)) ||
-				false;
-
-			setActiveItem({
-				expanded: hasSubNav ? !currentItemIsOpen : false,
-				path: item.path,
-			});
+		if (activeItem === item.id) {
+			setActiveItem('');
 		} else {
-			setActiveItem({
-				expanded: !!hasSubNav && item.path === activeItem.path,
-				path: item.path,
-			});
+			setActiveItem(item.id);
 		}
 	};
 
@@ -62,7 +35,7 @@ const SideNavMenu = ({
 									key={item.path}
 									item={item}
 									onItemClick={handleClick}
-									isShown={activeItem.expanded}
+									isShown={activeItem}
 								/>
 							);
 						})}
