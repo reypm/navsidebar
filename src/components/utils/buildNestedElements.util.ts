@@ -1,32 +1,36 @@
 export const buildNestedStructure = (data: any) => {
-  const topLevelItems = [];
-  const itemMap: {[index: number]: any} = {};
+	const topLevelItems = [];
+	const itemMap: { [index: number]: any } = {};
+	let loopCount = 1;
+	let innerLoopCount = 1;
 
-  for (const item of data) {
-    const {title, path, metaData} = item;
-    const newItem = {
-      title: title.replace(/-/g, " "),
-      path,
-      metaData ,
-      subNav: []
-    };
+	for (const item of data) {
+		const { title, path, metaData } = item;
+		const newItem = {
+			id: loopCount.toString(),
+			title: title.replace(/-/g, ' '),
+			path,
+			metaData,
+			subNav: [],
+		};
 
-    const metaDataLevel = +metaData.level;
+		const metaDataLevel = +metaData.level;
 
-    if (metaDataLevel === 1) {
-      topLevelItems.push(newItem);
-    } else {
-      const parentLevel = metaDataLevel - 1;
-      const parentItem = itemMap[parentLevel];
+		if (metaDataLevel === 1) {
+			topLevelItems.push(newItem);
+			loopCount++;
+		} else {
+			const parentLevel = metaDataLevel - 1;
+			const parentItem = itemMap[parentLevel];
 
-      parentItem.subNav.push(newItem);
-    }
+			newItem.id = metaDataLevel + '-' + parentLevel + '-' + innerLoopCount;
 
-    itemMap[metaDataLevel] = newItem;
-  }
+			parentItem.subNav.push(newItem);
+			innerLoopCount++;
+		}
 
-  return {
-    items: topLevelItems,
-    activeItem: topLevelItems[0]['path']
-  };
-}
+		itemMap[metaDataLevel] = newItem;
+	}
+
+	return topLevelItems;
+};
