@@ -1,7 +1,6 @@
 export const buildNestedStructure = (data: any) => {
 	const topLevelItems = [];
 	const itemMap: { [index: number]: any } = {};
-	let loopCount = 1;
 
 	for (const item of data) {
 		const { title, path, metaData } = item;
@@ -22,23 +21,23 @@ export const buildNestedStructure = (data: any) => {
 			const parentLevel = metaDataLevel - 1;
 			const parentItem = itemMap[parentLevel];
 
-			if (loopCount === 1) {
-				newItem.id = parentItem.id + '-' + parentItem.subNav.length + 1;
-				parentItem.subNav.push(newItem);
-				loopCount++;
+			if (parentItem.subNav.length === 0) {
+				const parentCopy = {
+					...parentItem,
+					id: parentItem.id + '-' + parentItem.subNav.length,
+					subNav: [],
+					title: 'overview',
+				};
+				parentItem.subNav.push(parentCopy);
 			}
 
 			newItem.id = parentItem.id + '-' + parentItem.subNav.length;
+			delete parentItem.path;
 			parentItem.subNav.push(newItem);
 		}
 
 		itemMap[metaDataLevel] = newItem;
 	}
 
-	console.log(topLevelItems);
-
-	return {
-		items: topLevelItems,
-		activeItem: topLevelItems[0]['path'],
-	};
+	return topLevelItems;
 };
