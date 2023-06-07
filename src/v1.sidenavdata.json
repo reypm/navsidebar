@@ -55,7 +55,7 @@
     }
   },
   {
-    "title": "intermediaryownerinfo",
+    "title": "intermediary-owner-info",
     "path": "/products/eboarding/v1/intermediaryownerinfo",
     "metaData": {
       "level": "2",
@@ -64,7 +64,7 @@
     }
   },
   {
-    "title": "additionalshareholders",
+    "title": "additional-share-holders",
     "path": "/products/eboarding/v1/additionalshareholders",
     "metaData": {
       "level": "2",
@@ -73,7 +73,7 @@
     }
   },
   {
-    "title": "businessinfo",
+    "title": "business-info",
     "path": "/products/eboarding/v1/businessinfo",
     "metaData": {
       "level": "2",
@@ -91,7 +91,7 @@
     }
   },
   {
-    "title": "financialinfo",
+    "title": "financial-info",
     "path": "/products/eboarding/v1/financialinfo",
     "metaData": {
       "level": "2",
@@ -109,7 +109,7 @@
     }
   },
   {
-    "title": "openapi",
+    "title": "open-api",
     "path": "/products/eboarding/v1/openapi",
     "metaData": {
       "level": "1",
