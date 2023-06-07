@@ -1,7 +1,6 @@
 import React from 'react';
 import { NavItemProps } from '../SideNavMenu.model';
 import ChevronDownIcon from '../Icon/ChevronDownIcon';
-import ChevronUpIcon from '../Icon/ChevronUpIcon';
 
 const NavItem = ({
 	item,
@@ -25,19 +24,16 @@ const NavItem = ({
 
 	return (
 		<li className={liCssClass}>
-			<div
-				onClick={() => onItemClick(item)}
-				className={[divCssClass, selectedClass].join(' ')}
-			>
+			<div onClick={() => onItemClick(item)} className={divCssClass}>
 				<span className={spanCssClass}>{item.title}</span>
-				{hasSubNav && !isShown.includes(item.id) ? <ChevronDownIcon /> : <ChevronUpIcon />}
+				{hasSubNav && !isShown.includes(item.id) ? <ChevronDownIcon /> : ''}
 			</div>
 			{hasSubNav && isShown.includes(item.id) && (
 				<ul className="side-navigation-panel-select-inner">
 					{subNav?.map((item: NavItemProps<string>) => {
 						return (
 							<NavItem
-								key={item.path}
+								key={`${item.path}-${item.title}`}
 								item={item}
 								onItemClick={onItemClick}
 								isShown={isShown}

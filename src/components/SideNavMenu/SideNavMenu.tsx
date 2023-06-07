@@ -5,15 +5,15 @@ import NavItem from './NavItem/NavItem';
 
 const SideNavMenu = ({ items }: { items: NavItemProps<string>[]; activePath?: string }) => {
 	const [activeItem, setActiveItem] = useState('');
-	let selectedClass: string;
+	const [selectedClass, setSelectedClass] = useState('');
 
 	const handleClick = (item: NavItemProps<string>) => {
 		if (activeItem === item.id) {
 			setActiveItem('');
-			selectedClass = '';
+			setSelectedClass('');
 		} else {
 			setActiveItem(item.id);
-			selectedClass = 'selected';
+			setSelectedClass('selected');
 		}
 	};
 
@@ -29,7 +29,7 @@ const SideNavMenu = ({ items }: { items: NavItemProps<string>[]; activePath?: st
 						{items.map((item: NavItemProps<string>, key: number) => {
 							return (
 								<NavItem
-									key={item.path}
+									key={`${item.path}-${item.title}`}
 									item={item}
 									onItemClick={handleClick}
 									isShown={activeItem}

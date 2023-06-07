@@ -9,6 +9,7 @@
   ul {
     text-transform: capitalize;
     list-style-type: none;
+    padding-inline-start: 20px;
   }
 
   .side-navigation-panel-select {
@@ -26,7 +27,7 @@
 
     .outter-li-0 {
       .outter-div .outter-div-0 {
-        font-family: 'Helvetica Neue';
+        font-family: 'Helvetica Neue', serif;
         font-style: normal;
         font-weight: 500;
         font-size: 16px;
@@ -34,7 +35,7 @@
         color: #2c2c2c;
 
         .outter-text-0 {
-          font-family: 'Helvetica Neue';
+          font-family: 'Helvetica Neue', serif;
           font-style: normal;
           font-weight: 400;
           font-size: 16px;
@@ -60,13 +61,13 @@
 
       .side-navigation-panel-select-inner {
         .outter-div-1 {
-          padding: 12px 16px;
+          //padding: 12px 16px;
           font-family: 'Helvetica Neue', serif;
           font-style: normal;
           font-weight: 400;
           font-size: 16px;
           line-height: 24px;
-          margin: 0 0 0 15px;
+          //margin: 0 0 0 15px;
         }
       }
 
