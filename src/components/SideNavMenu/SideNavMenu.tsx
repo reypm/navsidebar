@@ -7,8 +7,9 @@ const SideNavMenu = ({ items }: { items: NavItemProps<string>[]; activePath?: st
 	const [activeItem, setActiveItem] = useState('');
 
 	const handleClick = (item: NavItemProps<string>) => {
-		if (activeItem === item.id) {
-			setActiveItem('');
+		if (activeItem.startsWith(item.id)) {
+			const parent = item.id.slice(0, -2);
+			setActiveItem(parent);
 		} else {
 			setActiveItem(item.id);
 		}

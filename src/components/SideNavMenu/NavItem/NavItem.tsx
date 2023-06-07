@@ -32,7 +32,9 @@ const NavItem = ({
 				onClick={() => onItemClick(item)}
 				className={`${divCssClass} ${isShown.startsWith(item.id) ? 'selected' : ''}`}
 			>
-				<span className={spanCssClass}>{item.title}</span>
+				<span id={item.id} className={spanCssClass}>
+					{item.title}
+				</span>
 				{icon}
 			</div>
 			{hasSubNav && isShown.includes(item.id) && (
