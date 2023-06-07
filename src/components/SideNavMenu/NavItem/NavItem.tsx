@@ -28,7 +28,10 @@ const NavItem = ({
 
 	return (
 		<li className={liCssClass}>
-			<div onClick={() => handleClick(item)} className={`${divCssClass} ${selectedClass}`}>
+			<div
+				onClick={() => handleClick(item)}
+				className={`${divCssClass} ${activeItem.includes(item.id)} ? 'selected' : ''`}
+			>
 				<span className={spanCssClass}>{item.title}</span>
 				{hasSubNav && !activeItem.includes(item.id) ? <ChevronDownIcon /> : ''}
 			</div>
