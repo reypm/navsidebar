@@ -10,6 +10,8 @@ const NavItem = ({
 	liCssClass,
 	divCssClass,
 	spanCssClass,
+	subMenuClass,
+	parentItem,
 }: {
 	item: NavItemProps<string>;
 	onItemClick: any;
@@ -17,28 +19,29 @@ const NavItem = ({
 	liCssClass?: string;
 	divCssClass?: string;
 	spanCssClass?: string;
+	subMenuClass?: string;
+	parentItem?: string;
 }) => {
 	const hasSubNav = item.subNav && item.subNav.length > 0;
 	const subNav = item.subNav;
 
 	let icon;
+	let cssClass;
+
 	if (hasSubNav) {
 		icon = isShown.startsWith(item.id) ? <ChevronDownIcon /> : <ChevronUpIcon />;
 	}
 
 	return (
 		<li className={liCssClass}>
-			<div
-				onClick={() => onItemClick(item)}
-				className={`${divCssClass} ${isShown.startsWith(item.id) ? 'selected' : ''}`}
-			>
+			<div onClick={() => onItemClick(item)} className={`${divCssClass} ${subMenuClass}`}>
 				<span id={item.id} className={spanCssClass}>
 					{item.title}
 				</span>
 				{icon}
 			</div>
-			{hasSubNav && isShown.includes(item.id) && (
-				<ul className="side-navigation-panel-select-inner">
+			{hasSubNav && (
+				<ul className={`side-navigation-panel-select-inner ${subMenuClass}`}>
 					{subNav?.map((item: NavItemProps<string>) => {
 						return (
 							<NavItem
@@ -49,6 +52,7 @@ const NavItem = ({
 								liCssClass="outer-li-1"
 								divCssClass="outer-div outer-div-1"
 								spanCssClass="outer-text-1"
+								subMenuClass={subMenuClass}
 							/>
 						);
 					})}

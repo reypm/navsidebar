@@ -60,6 +60,7 @@
       }
 
       .side-navigation-panel-select-inner {
+        display: none;
         .outer-div-1 {
           //padding: 12px 16px;
           font-family: 'Helvetica Neue', serif;
@@ -74,6 +75,14 @@
       .selected {
         background: #f7f7fa;
         border-left: 3px solid #0a41c5;
+      }
+      
+      .expanded {
+        display: block;
+      }
+      
+      .collapse {
+        display: none;
       }
     }
   }

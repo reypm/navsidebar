@@ -3,15 +3,22 @@ import { NavItemProps } from './SideNavMenu.model';
 import './style.scss';
 import NavItem from './NavItem/NavItem';
 
-const SideNavMenu = ({ items }: { items: NavItemProps<string>[]; activePath?: string }) => {
+const SideNavMenu = ({ items }: { items: NavItemProps<string>[] }) => {
 	const [activeItem, setActiveItem] = useState('');
+	const [subMenuClass, setSubMenuClass] = useState('');
 
 	const handleClick = (item: NavItemProps<string>) => {
+		console.log(activeItem)
+		console.log(item.id)
+		
+		
 		if (activeItem.startsWith(item.id)) {
 			const parent = item.id.slice(0, -2);
 			setActiveItem(parent);
+			//setSubMenuClass('collapsed');
 		} else {
 			setActiveItem(item.id);
+			setSubMenuClass('expanded');
 		}
 	};
 
@@ -34,6 +41,7 @@ const SideNavMenu = ({ items }: { items: NavItemProps<string>[]; activePath?: st
 									liCssClass="outer-li-0"
 									divCssClass="outer-div outer-div-0"
 									spanCssClass="outer-text-0"
+									subMenuClass={subMenuClass}
 								/>
 							);
 						})}
